@@ -1,0 +1,16 @@
+{
+  "name": "reddit-gallery-client",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "whatisboom",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "gulp-compass": "~2.0.3",
+    "gulp-concat": "~2.5.0",
+    "gulp-watch": "~4.1.1"
+  }
+}
