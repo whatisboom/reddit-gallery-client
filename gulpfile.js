@@ -12,7 +12,7 @@ gulp.task('watch', function() {
     });
 });
 
-gulp.tast('html', function() {
+gulp.task('html', function() {
     gulp.src('./src/assets/html/**/*.html')
         .pipe(gulp.dest('./dist/assets/html/'));
 })
