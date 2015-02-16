@@ -9,7 +9,8 @@ angular.module('reddit-gallery')
 	};
 
 	return {
-		oauth: $resource('//localhost:8080/oauth', {}, crudMethods)
+		oauth: $resource('//localhost:8080/oauth', {}, crudMethods),
+		posts: $resource('//localhost:8080/posts/:subreddit', {}, crudMethods)
 	};
 
 }])

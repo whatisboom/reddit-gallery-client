@@ -1,16 +1,28 @@
 angular.module('reddit-gallery')
-.controller('oauthController', ['$scope', '$stateParams', '$window', 'apiFactory', function($scope, $stateParams, $window, apiFactory) {
-	console.log($stateParams);
-	if (!$stateParams.code) {
+.controller('oauthController', ['$scope', '$state', '$stateParams', '$window', 'apiFactory', 'cacheFactory', function($scope, $state, $stateParams, $window, apiFactory, cacheFactory) {
 
-		//get code
-		apiFactory.oauth.read(function success(response) {
-			$window.open(response.url);
-		}, function error(response) {
-			console.log('response', response);
-		});
-	}
-	else {
-		//have code send to server
-	}
+    if (!$stateParams.code) {
+
+        //get code
+        apiFactory.oauth.read(function success(response) {
+            $window.location = response.url;
+        }, function error(response) {
+            console.log('response', response);
+        });
+
+    }
+    else {
+        apiFactory.oauth.create({code: $stateParams.code}, function success(response) {
+
+            cacheFactory.put('user', response.user);
+            cacheFactory.put('auth', response.auth);
+
+            $state.go('base');
+
+        }, function error(response) {
+
+            console.log(response);
+
+        })
+    }
 }]);
